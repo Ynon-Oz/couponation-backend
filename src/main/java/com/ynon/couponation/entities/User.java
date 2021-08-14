@@ -9,7 +9,10 @@ import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+
 
 /**
  * Created by Ynon on  14-Aug-21
@@ -26,10 +29,12 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
     @Email
+    @NotBlank
     private String email;
     @Size(min = 8, max = 12)
     private String password;
-    @Enumerated
+    @Enumerated(EnumType.STRING)
+//    @NotEmpty
     private UserType type;
 
 

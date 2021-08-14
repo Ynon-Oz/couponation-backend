@@ -10,29 +10,20 @@ import lombok.Data;
 
 public enum ErrType {
 
-    USER_NOT_EXIST(604,"User ID is not exists",false);
+    USER_NOT_EXIST("User ID is not exists");
 
 
-    private int number;
-    private String massage;
-    private boolean isPrintToStackTrace;
+    private String description;
 
-
-    ErrType(int number, String massage, boolean isPrintToStackTrace) {
-        this.number = number;
-        this.massage = massage;
-        this.isPrintToStackTrace = isPrintToStackTrace;
+    ErrType(String description){
+        this.description = description;
     }
 
-    public int getNumber() {
-        return number;
+    public String getDescription() {
+        return description;
     }
 
-    public String getMassage() {
-        return massage;
-    }
-
-    public boolean isPrintToStackTrace() {
-        return isPrintToStackTrace;
+    public void setDescription(String description) {
+        this.description = description;
     }
 }

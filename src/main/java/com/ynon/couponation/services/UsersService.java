@@ -4,6 +4,7 @@ import com.ynon.couponation.dtos.UserDto;
 import com.ynon.couponation.entities.User;
 import com.ynon.couponation.enums.ErrType;
 import com.ynon.couponation.exceptions.ApplicationException;
+import com.ynon.couponation.mapper.UserMapper;
 import com.ynon.couponation.repositories.UsersRepo;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -21,49 +22,50 @@ import java.util.List;
 public class UsersService {
 
     private final UsersRepo usersRepository;
+    private final UserMapper userMapper;
 
     //Create
-    public ResponseEntity<?> createUser(UserDto user) {
-        return new ResponseEntity<>(usersRepository.save(turnUserDtoToUserEntity(user)), HttpStatus.CREATED);
+    public UserDto createUser(UserDto user) {
+        return userMapper.toDto(usersRepository.save(userMapper.toDao(user)));
     }
 
     //Retrieve
     //All
     public List<UserDto> getAllUsers() {
-        List<User> users = usersRepository.findAll();
-        List<UserDto> dtoUsers = new ArrayList<>();
-        users.forEach(user -> dtoUsers.add(turnUserEntityToUserDto(user)));
-
-        return dtoUsers;
+        return userMapper.toDtoList(usersRepository.findAll());
     }
 
+    public UserDto getUserById(long id) {
+        return userMapper.toDto(usersRepository.getOne(id));
+    }
     //Update
 
     //Delete
     public void deleteUser(long id) throws ApplicationException {
-        if( usersRepository.existsById(id)){
+        if (!usersRepository.existsById(id)) {
             throw new ApplicationException(ErrType.USER_NOT_EXIST);
         }
         usersRepository.deleteById(id);
     }
 
-    //Entity to DTO
-    private UserDto turnUserEntityToUserDto(User entity) {
-        return UserDto.builder()
-                .id(entity.getId())
-                .email(entity.getEmail())
-                .password(entity.getPassword())
-                .type(entity.getType())
-                .build();
-    }
 
-    //DTO to Entity
-    private User turnUserDtoToUserEntity(UserDto dto) {
-        return User.builder()
-                .id(dto.getId())
-                .email(dto.getEmail())
-                .password(dto.getPassword())
-                .type(dto.getType())
-                .build();
-    }
+//    //Entity to DTO
+//    private UserDto turnUserEntityToUserDto(User entity) {
+//        return UserDto.builder()
+//                .id(entity.getId())
+//                .email(entity.getEmail())
+//                .password(entity.getPassword())
+//                .type(entity.getType())
+//                .build();
+//    }
+//
+//    //DTO to Entity
+//    private User turnUserDtoToUserEntity(UserDto dto) {
+//        return User.builder()
+//                .id(dto.getId())
+//                .email(dto.getEmail())
+//                .password(dto.getPassword())
+//                .type(dto.getType())
+//                .build();
+//    }
 }

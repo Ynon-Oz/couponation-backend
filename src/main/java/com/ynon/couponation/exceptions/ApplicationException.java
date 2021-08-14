@@ -12,10 +12,10 @@ public class ApplicationException extends Exception{
 //    private ErrType errType;
 
     public ApplicationException(ErrType errType) {
-        super(errType.getMassage());
+        super(errType.getDescription());
     }
 
-    public ApplicationException(Exception e, ErrType errType) {
-        super(errType.getMassage(), e);
+    public ApplicationException(String massage) {
+        super(massage);
     }
 }

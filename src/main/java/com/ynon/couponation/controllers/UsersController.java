@@ -1,12 +1,14 @@
 package com.ynon.couponation.controllers;
 
+import com.ynon.couponation.dtos.UserDto;
+import com.ynon.couponation.exceptions.ApplicationException;
 import com.ynon.couponation.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 /**
  * Created by Ynon on  14-Aug-21
@@ -17,9 +19,28 @@ import org.springframework.web.bind.annotation.RestController;
 public class UsersController {
 
     private final UsersService usersService;
-
-    @GetMapping
-    public ResponseEntity<?> getAllUsers(){
-        return new ResponseEntity<>(usersService.getAllUsers(), HttpStatus.OK);
+//CREATE
+    @ResponseStatus(HttpStatus.CREATED)
+    @PostMapping
+    public @ResponseBody UserDto addUser(@RequestBody UserDto user) {
+        return this.usersService.createUser(user);
     }
+
+    //RETRIEVE
+    @GetMapping
+    public List<UserDto> getAllUsers(){
+        return this.usersService.getAllUsers();
+    }
+    @GetMapping("/{id}")
+    public UserDto getUser(@PathVariable long id){
+        return this.usersService.getUserById(id);
+    }
+
+    //DELETE
+    @DeleteMapping("/{id}")
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    public void deleteUser(@PathVariable long id) throws ApplicationException {
+        this.usersService.deleteUser(id);
+    }
+
 }

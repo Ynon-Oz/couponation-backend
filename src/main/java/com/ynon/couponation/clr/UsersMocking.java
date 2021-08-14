@@ -1,0 +1,73 @@
+package com.ynon.couponation.clr;
+
+import com.ynon.couponation.dtos.UserDto;
+import com.ynon.couponation.entities.User;
+import com.ynon.couponation.enums.UserType;
+import com.ynon.couponation.services.UsersService;
+import com.ynon.couponation.utils.ArtUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.core.annotation.Order;
+import org.springframework.stereotype.Component;
+
+import java.io.FileOutputStream;
+import java.io.PrintStream;
+
+/**
+ * Created by Ynon on  15-Aug-21
+ */
+@Component
+//@Order(1)
+public class UsersMocking implements CommandLineRunner {
+    @Autowired
+    private UsersService usersService;
+
+    @Override
+    public void run(String... args) throws Exception {
+
+//        PrintStream out = new PrintStream(
+//                new FileOutputStream("output.txt", true), true);
+//        System.setOut(out);
+
+        System.out.println(ArtUtils.stratingTests);
+
+        UserDto u1 = UserDto.builder()
+                .type(UserType.ADMIN)
+                .email("admin@admin.com")
+                .password("12345678")
+                .build();
+        UserDto u2 = UserDto.builder()
+                .type(UserType.COMPANY)
+                .email("company@company.com")
+                .password("12345678")
+                .build();
+        UserDto u3 = UserDto.builder()
+                .type(UserType.CUSTOMER)
+                .email("customer1@gmail.com")
+                .password("12345678")
+                .build();
+        UserDto u4 = UserDto.builder()
+                .type(UserType.CUSTOMER)
+                .email("customer2@gmail.com")
+                .password("12345678")
+                .build();
+        System.out.println("Adding User: " + u1);
+        usersService.createUser(u1);
+        System.out.println("Adding User: " + u2);
+        usersService.createUser(u2);
+        System.out.println("Adding User: " + u3);
+        usersService.createUser(u3);
+        System.out.println("Adding User: " + u4);
+        usersService.createUser(u4);
+        System.out.println("********************************************************************");
+        System.out.println("Deleting User id# 3");
+        usersService.deleteUser(3);
+        System.out.println("********************************************************************");
+        System.out.println("Get all users:");
+        usersService.getAllUsers().forEach(System.out::println);
+        System.out.println("********************************************************************");
+
+
+
+    }
+}
