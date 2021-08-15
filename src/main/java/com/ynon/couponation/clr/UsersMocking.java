@@ -67,14 +67,13 @@ public class UsersMocking implements CommandLineRunner {
         usersService.deleteUser(3);
         System.out.println("********************************************************************");
         UserDto updateUser = usersService.getUserById(4);
-        System.out.println("Updating User#4: "+updateUser);
+        System.out.println("Updating User#4: " + updateUser);
         updateUser.setPassword("87654321");
-        System.out.println(usersService.updateUser(4,updateUser));
+        System.out.println(usersService.updateUser(4, updateUser));
         System.out.println("********************************************************************");
         System.out.println("Get all users:");
         usersService.getAllUsers().forEach(System.out::println);
         System.out.println("********************************************************************");
-
 
 
     }

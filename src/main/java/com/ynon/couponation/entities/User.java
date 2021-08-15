@@ -1,10 +1,7 @@
 package com.ynon.couponation.entities;
 
 import com.ynon.couponation.enums.UserType;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.springframework.validation.annotation.Validated;
 
 import javax.persistence.*;
@@ -34,7 +31,6 @@ public class User {
     @Size(min = 8, max = 12)
     private String password;
     @Enumerated(EnumType.STRING)
-//    @NotEmpty
     private UserType type;
     @ManyToOne
     @JoinColumn(name = "companyId")

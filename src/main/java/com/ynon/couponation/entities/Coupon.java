@@ -24,10 +24,8 @@ public class Coupon {
     private long id;
     //    @NotNull
     @JoinColumn(name = "companyId")
-    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Company company;
-
-    //TODO Change CouponCategory to Entity
 
     @JoinColumn(name = "categoryId")
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
