@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 /**
  * Created by Ynon on  14-Aug-21
@@ -34,12 +35,20 @@ public class UsersService {
     public List<UserDto> getAllUsers() {
         return userMapper.toDtoList(usersRepository.findAll());
     }
-
+    //Single
     public UserDto getUserById(long id) {
-        return userMapper.toDto(usersRepository.getOne(id));
+        return userMapper.toDto(usersRepository.findById(id).get());
     }
     //Update
-
+    public UserDto updateUser(long id,UserDto user) throws ApplicationException {
+        if(!usersRepository.existsById(id)){
+            throw new ApplicationException(ErrType.USER_NOT_EXIST);
+        }
+        User u = usersRepository.findById(id).get();
+        u.setPassword(user.getPassword());
+        u.setType(user.getType());
+        return userMapper.toDto(usersRepository.save(u));
+    }
     //Delete
     public void deleteUser(long id) throws ApplicationException {
         if (!usersRepository.existsById(id)) {
@@ -49,23 +58,5 @@ public class UsersService {
     }
 
 
-//    //Entity to DTO
-//    private UserDto turnUserEntityToUserDto(User entity) {
-//        return UserDto.builder()
-//                .id(entity.getId())
-//                .email(entity.getEmail())
-//                .password(entity.getPassword())
-//                .type(entity.getType())
-//                .build();
-//    }
-//
-//    //DTO to Entity
-//    private User turnUserDtoToUserEntity(UserDto dto) {
-//        return User.builder()
-//                .id(dto.getId())
-//                .email(dto.getEmail())
-//                .password(dto.getPassword())
-//                .type(dto.getType())
-//                .build();
-//    }
+
 }

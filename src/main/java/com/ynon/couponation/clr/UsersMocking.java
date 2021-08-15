@@ -3,6 +3,7 @@ package com.ynon.couponation.clr;
 import com.ynon.couponation.dtos.UserDto;
 import com.ynon.couponation.entities.User;
 import com.ynon.couponation.enums.UserType;
+import com.ynon.couponation.mapper.UserMapper;
 import com.ynon.couponation.services.UsersService;
 import com.ynon.couponation.utils.ArtUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +22,8 @@ import java.io.PrintStream;
 public class UsersMocking implements CommandLineRunner {
     @Autowired
     private UsersService usersService;
+    @Autowired
+    private UserMapper userMapper;
 
     @Override
     public void run(String... args) throws Exception {
@@ -62,6 +65,11 @@ public class UsersMocking implements CommandLineRunner {
         System.out.println("********************************************************************");
         System.out.println("Deleting User id# 3");
         usersService.deleteUser(3);
+        System.out.println("********************************************************************");
+        UserDto updateUser = usersService.getUserById(4);
+        System.out.println("Updating User#4: "+updateUser);
+        updateUser.setPassword("87654321");
+        System.out.println(usersService.updateUser(4,updateUser));
         System.out.println("********************************************************************");
         System.out.println("Get all users:");
         usersService.getAllUsers().forEach(System.out::println);

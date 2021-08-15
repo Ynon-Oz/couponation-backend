@@ -1,9 +1,12 @@
 package com.ynon.couponation.dtos;
 
 import com.ynon.couponation.enums.UserType;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.Access;
 import javax.persistence.Enumerated;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.Size;
@@ -13,6 +16,8 @@ import javax.validation.constraints.Size;
  */
 @Data
 @Builder
+@NoArgsConstructor
+@AllArgsConstructor
 public class UserDto {
 
     private long id;
