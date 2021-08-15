@@ -30,8 +30,8 @@ public class Company {
     @Email
     private String email;
     private String webSite;
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<User> users;
-    @OneToMany( cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "company",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Coupon> coupons;
 }

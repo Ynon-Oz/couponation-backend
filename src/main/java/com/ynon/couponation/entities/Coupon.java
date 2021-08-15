@@ -24,13 +24,13 @@ public class Coupon {
     private long id;
     //    @NotNull
     @JoinColumn(name = "companyId")
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
     private Company company;
 
     //TODO Change CouponCategory to Entity
 
     @JoinColumn(name = "categoryId")
-    @ManyToOne(cascade = CascadeType.ALL)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     private CouponCategory type;
     @Size(min = 2, max = 22)
 //    @Column(name = "title",  nullable = false)

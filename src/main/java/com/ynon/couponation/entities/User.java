@@ -36,6 +36,9 @@ public class User {
     @Enumerated(EnumType.STRING)
 //    @NotEmpty
     private UserType type;
+    @ManyToOne
+    @JoinColumn(name = "companyId")
+    private Company company;
 
 
 }
