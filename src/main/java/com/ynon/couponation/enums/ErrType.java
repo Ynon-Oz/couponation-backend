@@ -10,7 +10,8 @@ import lombok.Data;
 
 public enum ErrType {
 
-    USER_NOT_EXIST("User ID is not exists");
+    USER_NOT_EXIST("User ID is not exists"),
+    COMPANY_NOT_EXIST("Company ID is not exist");
 
 
     private String description;

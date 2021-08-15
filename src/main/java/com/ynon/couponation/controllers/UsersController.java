@@ -5,7 +5,6 @@ import com.ynon.couponation.exceptions.ApplicationException;
 import com.ynon.couponation.services.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -29,6 +28,7 @@ public class UsersController {
     }
 
     //RETRIEVE
+    @ResponseStatus(HttpStatus.OK)
     @GetMapping
     public List<UserDto> getAllUsers() {
         return this.usersService.getAllUsers();

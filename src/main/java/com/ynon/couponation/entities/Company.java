@@ -1,5 +1,7 @@
 package com.ynon.couponation.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -20,6 +22,7 @@ import java.util.List;
 @AllArgsConstructor
 @Builder
 @Validated
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Company {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,8 +33,10 @@ public class Company {
     @Email
     private String email;
     private String webSite;
+    @JsonIgnore
     @OneToMany(mappedBy = "company" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<User> users;
+    @JsonIgnore
     @OneToMany(mappedBy = "company",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Coupon> coupons;
 }

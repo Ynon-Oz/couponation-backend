@@ -18,7 +18,6 @@ import java.io.PrintStream;
  * Created by Ynon on  15-Aug-21
  */
 @Component
-//@Order(1)
 public class UsersMocking implements CommandLineRunner {
     @Autowired
     private UsersService usersService;
@@ -29,10 +28,10 @@ public class UsersMocking implements CommandLineRunner {
     public void run(String... args) throws Exception {
 
 //        PrintStream out = new PrintStream(
-//                new FileOutputStream("output.txt", true), true);
+//                new FileOutputStream("userstesting.log", true), true);
 //        System.setOut(out);
 
-        System.out.println(ArtUtils.stratingTests);
+        System.out.println(ArtUtils.stratingUsersTests);
 
         UserDto u1 = UserDto.builder()
                 .type(UserType.ADMIN)
@@ -55,13 +54,13 @@ public class UsersMocking implements CommandLineRunner {
                 .password("12345678")
                 .build();
         System.out.println("Adding User: " + u1);
-        usersService.createUser(u1);
+        System.out.println(usersService.createUser(u1));
         System.out.println("Adding User: " + u2);
-        usersService.createUser(u2);
+        System.out.println(usersService.createUser(u2));
         System.out.println("Adding User: " + u3);
-        usersService.createUser(u3);
+        System.out.println(usersService.createUser(u3));
         System.out.println("Adding User: " + u4);
-        usersService.createUser(u4);
+        System.out.println(usersService.createUser(u4));
         System.out.println("********************************************************************");
         System.out.println("Deleting User id# 3");
         usersService.deleteUser(3);

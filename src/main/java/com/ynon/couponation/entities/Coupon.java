@@ -24,6 +24,7 @@ public class Coupon {
     private long id;
     //    @NotNull
     @JoinColumn(name = "companyId")
+    @JsonIgnore
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Company company;
 
