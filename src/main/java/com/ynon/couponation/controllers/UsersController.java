@@ -19,21 +19,31 @@ import java.util.List;
 public class UsersController {
 
     private final UsersService usersService;
-//CREATE
+
+    //CREATE
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
-    public @ResponseBody UserDto addUser(@RequestBody UserDto user) {
+    public @ResponseBody
+    UserDto addUser(@RequestBody UserDto user) {
         return this.usersService.createUser(user);
     }
 
     //RETRIEVE
     @GetMapping
-    public List<UserDto> getAllUsers(){
+    public List<UserDto> getAllUsers() {
         return this.usersService.getAllUsers();
     }
+
     @GetMapping("/{id}")
-    public UserDto getUser(@PathVariable long id){
+    public UserDto getUser(@PathVariable long id) {
         return this.usersService.getUserById(id);
+    }
+
+    //UPDATE
+    @ResponseStatus(HttpStatus.NO_CONTENT)
+    @PutMapping("/{id}")
+    public UserDto updateUser(@PathVariable long id, @RequestBody UserDto user) throws ApplicationException {
+        return this.usersService.updateUser(id, user);
     }
 
     //DELETE
