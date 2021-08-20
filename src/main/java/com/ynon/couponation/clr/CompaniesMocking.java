@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 /**
  * Created by Ynon on  15-Aug-21
  */
-//@Component
+@Component
 public class CompaniesMocking implements CommandLineRunner {
     @Autowired
     private CompaniesService companiesService;
@@ -42,15 +42,15 @@ public class CompaniesMocking implements CommandLineRunner {
         System.out.println("Adding Company: "+c2);
         System.out.println(companiesService.createCompany(c2));
         System.out.println("********************************************************************");
-        System.out.println("Get company #1: ");
-//        System.out.println(companiesService.getCompany(1));
+        System.out.println("Get company #: 2");
+        System.out.println(companiesService.getCompany(2));
         System.out.println("********************************************************************");
-        System.out.println("Delete company #1 ");
-        companiesService.deleteCompany(1);
+        System.out.println("Delete company #2");
+        companiesService.deleteCompany(2);
         System.out.println("********************************************************************");
-        System.out.println("Update company #2: ");
+        System.out.println("Update company #1: ");
         c2.setWebSite("www.farig.org.il");
-        System.out.println(companiesService.updateCompany(2,c2));
+        System.out.println(companiesService.updateCompany(1,c2));
         System.out.println("********************************************************************");
         System.out.println("Get all companies: ");
         companiesService.getAllCompanies().forEach(System.out::println);

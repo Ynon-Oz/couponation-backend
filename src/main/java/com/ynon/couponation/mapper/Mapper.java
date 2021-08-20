@@ -1,5 +1,7 @@
 package com.ynon.couponation.mapper;
 
+import com.ynon.couponation.exceptions.ApplicationException;
+
 import java.util.List;
 
 /**
@@ -7,9 +9,9 @@ import java.util.List;
  */
 public interface Mapper<DAO,DTO> {
 
-    DAO toDao(DTO dto) ;
+    DAO toDao(DTO dto) throws ApplicationException;
     DTO toDto(DAO dao);
-    List<DAO> toDaoList(List<DTO> dtos) ;
+    List<DAO> toDaoList(List<DTO> dtos) throws ApplicationException;
     List<DTO> toDtoList(List<DAO> daos);
 
 }

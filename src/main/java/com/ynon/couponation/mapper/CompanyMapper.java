@@ -20,11 +20,11 @@ public class CompanyMapper implements Mapper<Company, CompanyDto> {
                 .id(companyDto.getId())
                 .name(companyDto.getName())
                 .email(companyDto.getEmail())
-                .Address(companyDto.getAddress())
+                .address(companyDto.getAddress())
                 .phone(companyDto.getPhone())
-                .webSite(companyDto.getWebSite())
-                .coupons(companyDto.getCoupons())
-                .users(companyDto.getUsers())
+                .website(companyDto.getWebSite())
+//                .coupons(companyDto.getCoupons())
+//                .users(companyDto.getUsers().stream().forEach(user -> user.getCompanyId());)
                 .build();
     }
 
@@ -36,9 +36,9 @@ public class CompanyMapper implements Mapper<Company, CompanyDto> {
                 .email(company.getEmail())
                 .address(company.getAddress())
                 .phone(company.getPhone())
-                .webSite(company.getWebSite())
-                .coupons(company.getCoupons())
-                .users(company.getUsers())
+                .webSite(company.getWebsite())
+//                .coupons(company.getCoupons())
+//                .users(company.getUsers())
                 .build();
     }
 

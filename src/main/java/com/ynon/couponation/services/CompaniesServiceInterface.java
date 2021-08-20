@@ -17,7 +17,7 @@ public interface CompaniesServiceInterface {
     List<CompanyDto> getAllCompanies();
 
     //Update
-    CompanyDto updateCompany(long id, CompanyDto companyDto);
+    CompanyDto updateCompany(long id, CompanyDto companyDto) throws ApplicationException;
 
     //Delete
     void deleteCompany(long id) throws ApplicationException;

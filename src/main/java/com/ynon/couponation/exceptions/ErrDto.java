@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 public class ErrDto {
     private final String key = "Oooops...";
     private String message;

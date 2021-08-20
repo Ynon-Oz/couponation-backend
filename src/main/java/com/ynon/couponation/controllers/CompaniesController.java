@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Ynon on  15-Aug-21
  */
 @RestController
-@RequestMapping("/companies")
+@RequestMapping("/company")
 @RequiredArgsConstructor
 public class CompaniesController {
 
@@ -42,7 +42,7 @@ public class CompaniesController {
     //UPDATE
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @PutMapping("/{id}")
-    public CompanyDto updateCompany(@PathVariable long id, @RequestBody CompanyDto company){
+    public CompanyDto updateCompany(@PathVariable long id, @RequestBody CompanyDto company) throws ApplicationException {
         return this.companiesService.updateCompany(id,company);
     }
 

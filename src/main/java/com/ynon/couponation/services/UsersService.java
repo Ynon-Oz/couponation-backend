@@ -26,7 +26,7 @@ public class UsersService {
     private final UserMapper userMapper;
 
     //Create
-    public UserDto createUser(UserDto user) {
+    public UserDto createUser(UserDto user) throws ApplicationException {
         return userMapper.toDto(usersRepository.save(userMapper.toDao(user)));
     }
 

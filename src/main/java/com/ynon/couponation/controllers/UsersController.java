@@ -13,7 +13,7 @@ import java.util.List;
  * Created by Ynon on  14-Aug-21
  */
 @RestController
-@RequestMapping("/users")
+@RequestMapping("/user")
 @RequiredArgsConstructor
 public class UsersController {
 
@@ -23,7 +23,7 @@ public class UsersController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public @ResponseBody
-    UserDto addUser(@RequestBody UserDto user) {
+    UserDto addUser(@RequestBody UserDto user) throws ApplicationException {
         return this.usersService.createUser(user);
     }
 

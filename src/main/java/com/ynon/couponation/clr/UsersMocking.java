@@ -37,21 +37,27 @@ public class UsersMocking implements CommandLineRunner {
                 .type(UserType.ADMIN)
                 .email("admin@admin.com")
                 .password("12345678")
+                .companyId(null)
+                .isActivated(true)
                 .build();
         UserDto u2 = UserDto.builder()
                 .type(UserType.COMPANY)
                 .email("company@company.com")
                 .password("12345678")
+                .companyId(1l)
+                .isActivated(true)
                 .build();
         UserDto u3 = UserDto.builder()
                 .type(UserType.CUSTOMER)
                 .email("customer1@gmail.com")
                 .password("12345678")
+                .companyId(null)
                 .build();
         UserDto u4 = UserDto.builder()
                 .type(UserType.CUSTOMER)
                 .email("customer2@gmail.com")
                 .password("12345678")
+                .companyId(null)
                 .build();
         System.out.println("Adding User: " + u1);
         System.out.println(usersService.createUser(u1));
